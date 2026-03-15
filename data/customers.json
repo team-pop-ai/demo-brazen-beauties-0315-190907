@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sarah Johnson",
+    "email": "sarah.j@email.com",
+    "phone": "(555) 123-4567",
+    "event_attended": "Holiday Pop-Up 2023",
+    "jewelry_interests": "Permanent jewelry, stackable rings",
+    "last_contact": "2024-11-15"
+  },
+  {
+    "name": "Michelle Chen",
+    "email": "mchen@email.com",
+    "phone": "(555) 234-5678",
+    "event_attended": "Bridal Show",
+    "jewelry_interests": "Custom engagement rings, wedding bands",
+    "last_contact": "2024-10-30"
+  },
+  {
+    "name": "Amanda Rodriguez",
+    "email": "amanda.r@email.com",
+    "phone": "(555) 345-6789",
+    "event_attended": "Permanent Jewelry Party",
+    "jewelry_interests": "Chain bracelets, necklaces",
+    "last_contact": "2024-11-20"
+  },
+  {
+    "name": "Jessica Williams",
+    "email": "jwilliams@email.com",
+    "phone": "(555) 456-7890",
+    "event_attended": "Valentine's Collection",
+    "jewelry_interests": "Gemstone earrings, pendant necklaces",
+    "last_contact": "2024-09-15"
+  },
+  {
+    "name": "Lisa Thompson",
+    "email": "lisa.t@email.com",
+    "phone": "(555) 567-8901",
+    "event_attended": "Custom Workshop",
+    "jewelry_interests": "DIY projects, wire wrapping",
+    "last_contact": "2024-11-05"
+  }
+]

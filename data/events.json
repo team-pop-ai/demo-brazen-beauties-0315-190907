@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Holiday Jewelry Pop-Up",
+    "location": "Downtown Artisan Market",
+    "date": "2024-12-15",
+    "target_audience": "Holiday gift shoppers",
+    "expected_attendance": 150
+  },
+  {
+    "id": 2,
+    "name": "Bridal Show Showcase",
+    "location": "Grand Convention Center",
+    "date": "2024-12-22",
+    "target_audience": "Engaged couples",
+    "expected_attendance": 300
+  },
+  {
+    "id": 3,
+    "name": "Permanent Jewelry Party",
+    "location": "Studio Location",
+    "date": "2025-01-10",
+    "target_audience": "Young professionals and students",
+    "expected_attendance": 25
+  },
+  {
+    "id": 4,
+    "name": "Valentine's Day Collection Launch",
+    "location": "Luxury Mall Pop-Up",
+    "date": "2025-01-25",
+    "target_audience": "Couples and romantic gift buyers",
+    "expected_attendance": 200
+  },
+  {
+    "id": 5,
+    "name": "Custom Design Workshop",
+    "location": "Studio Location",
+    "date": "2025-02-05",
+    "target_audience": "DIY jewelry enthusiasts",
+    "expected_attendance": 15
+  }
+]

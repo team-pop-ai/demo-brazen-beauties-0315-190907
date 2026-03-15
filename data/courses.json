@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Gemstone Identification Basics",
+    "description": "Learn to identify common gemstones using basic tools and techniques",
+    "objectives": ["Visual identification", "Testing methods", "Quality assessment"]
+  },
+  {
+    "id": 2,
+    "title": "Jewelry Care and Maintenance",
+    "description": "Professional techniques for cleaning and maintaining various jewelry types",
+    "objectives": ["Cleaning methods", "Storage solutions", "Damage prevention"]
+  },
+  {
+    "id": 3,
+    "title": "Custom Jewelry Design Process",
+    "description": "From concept to creation - understanding custom jewelry workflow",
+    "objectives": ["Design consultation", "Material selection", "Production timeline"]
+  },
+  {
+    "id": 4,
+    "title": "Permanent Jewelry Techniques",
+    "description": "Master the art of permanent jewelry application and customer service",
+    "objectives": ["Welding techniques", "Safety protocols", "Customer consultation"]
+  },
+  {
+    "id": 5,
+    "title": "Jewelry Photography for Business",
+    "description": "Professional photography techniques for showcasing jewelry online",
+    "objectives": ["Lighting setup", "Macro photography", "Product styling"]
+  },
+  {
+    "id": 6,
+    "title": "Building a Jewelry Business",
+    "description": "Business fundamentals for starting and growing a jewelry enterprise",
+    "objectives": ["Market analysis", "Pricing strategies", "Customer acquisition"]
+  }
+]

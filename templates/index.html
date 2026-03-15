@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brazen Beauties AI Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💎 Brazen Beauties AI Assistant</h1>
+            <p>Jewelry Business Automation Platform</p>
+        </header>
+
+        <div class="stats-bar">
+            <div class="stat">
+                <span class="stat-number" id="events-count">0</span>
+                <span class="stat-label">Upcoming Events</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="customers-count">0</span>
+                <span class="stat-label">Customer Database</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="knowledge-count">0</span>
+                <span class="stat-label">Knowledge Articles</span>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <!-- Event Promotion Panel -->
+            <div class="panel">
+                <h2>🎉 Event Promotion</h2>
+                <form id="event-form" class="form-panel">
+                    <input type="text" name="event_name" placeholder="Event Name" required>
+                    <input type="date" name="event_date" required>
+                    <input type="text" name="event_location" placeholder="Location" required>
+                    <input type="text" name="target_audience" placeholder="Target Audience" required>
+                    <button type="submit" class="primary-button">Generate Promotion Content</button>
+                </form>
+                <div id="event-result" class="result-panel hidden">
+                    <h3>Generated Promotion Content</h3>
+                    <div class="result-content"></div>
+                </div>
+            </div>
+
+            <!-- Customer Inquiries Panel -->
+            <div class="panel">
+                <h2>💬 Customer Inquiries</h2>
+                <form id="inquiry-form" class="form-panel">
+                    <input type="text" name="customer_name" placeholder="Customer Name" required>
+                    <select name="inquiry_type" required>
+                        <option value="">Select Inquiry Type</option>
+                        <option value="gemstone_question">Gemstone Question</option>
+                        <option value="custom_jewelry">Custom Jewelry</option>
+                        <option value="permanent_jewelry">Permanent Jewelry</option>
+                        <option value="care_maintenance">Care & Maintenance</option>
+                        <option value="appointment">Appointment Booking</option>
+                    </select>
+                    <textarea name="inquiry_text" placeholder="Customer's question or request..." required rows="3"></textarea>
+                    <button type="submit" class="primary-button">Generate Expert Response</button>
+                </form>
+                <div id="inquiry-result" class="result-panel hidden">
+                    <h3>Expert Response</h3>
+                    <div class="result-content"></div>
+                </div>
+            </div>
+
+            <!-- Follow-up Management Panel -->
+            <div class="panel">
+                <h2>📧 Follow-up Management</h2>
+                <form id="followup-form" class="form-panel">
+                    <input type="text" name="customer_name" placeholder="Customer Name" required>
+                    <select name="event_attended" required>
+                        <option value="">Select Event Attended</option>
+                        <option value="Downtown Pop-Up">Downtown Pop-Up</option>
+                        <option value="Bridal Show">Bridal Show</option>
+                        <option value="Holiday Market">Holiday Market</option>
+                        <option value="Permanent Jewelry Party">Permanent Jewelry Party</option>
+                    </select>
+                    <input type="text" name="interests" placeholder="Customer Interests" required>
+                    <select name="followup_type" required>
+                        <option value="">Follow-up Type</option>
+                        <option value="thank_you">Thank You</option>
+                        <option value="product_recommendation">Product Recommendation</option>
+                        <option value="appointment_reminder">Appointment Reminder</option>
+                        <option value="event_invitation">Event Invitation</option>
+                    </select>
+                    <button type="submit" class="primary-button">Generate Follow-up Sequence</button>
+                </form>
+                <div id="followup-result" class="result-panel hidden">
+                    <h3>Personalized Follow-up</h3>
+                    <div class="result-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Voice Agent Section -->
+        <div class="voice-agent-section">
+            <h2>📞 Voice AI Assistant for Inbound Calls</h2>
+            <div class="existing-solution">
+                <p><strong>This component exists and will be demonstrated live by the founder.</strong></p>
+                <p>The voice agent handles inbound customer calls with the same gemology expertise, booking appointments and answering jewelry questions over the phone.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let eventsData = [];
+        let customersData = [];
+        let knowledgeData = [];
+
+        // Load data and update counters
+        async function loadData() {
+            try {
+                const [eventsRes, customersRes, knowledgeRes] = await Promise.all([
+                    fetch('/api/events'),
+                    fetch('/api/customers'),  
+                    fetch('/api/knowledge')
+                ]);
+
+                if (eventsRes.ok) {
+                    const eventsData = await eventsRes.json();
+                    document.getElementById('events-count').textContent = eventsData.events.length;
+                }
+
+                if (customersRes.ok) {
+                    const customersData = await customersRes.json();
+                    document.getElementById('customers-count').textContent = customersData.customers.length;
+                }
+
+                if (knowledgeRes.ok) {
+                    const knowledgeData = await knowledgeRes.json();
+                    document.getElementById('knowledge-count').textContent = knowledgeData.knowledge.length;
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Handle form submissions
+        function setupForm(formId, endpoint, resultId) {
+            document.getElementById(formId).addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const button = e.target.querySelector('button');
+                const originalText = button.textContent;
+                button.textContent = 'Processing...';
+                button.disabled = true;
+
+                const resultDiv = document.getElementById(resultId);
+                const resultContent = resultDiv.querySelector('.result-content');
+                
+                try {
+                    const formData = new FormData(e.target);
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        resultContent.innerHTML = `<pre>${data.result}</pre>`;
+                        resultDiv.classList.remove('hidden');
+                        resultDiv.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        resultContent.innerHTML = `<div class="error">Error: ${data.detail}</div>`;
+                        resultDiv.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    resultContent.innerHTML = `<div class="error">Network error: ${error.message}</div>`;
+                    resultDiv.classList.remove('hidden');
+                }
+                
+                button.textContent = originalText;
+                button.disabled = false;
+            });
+        }
+
+        // Initialize forms
+        setupForm('event-form', '/promote-event', 'event-result');
+        setupForm('inquiry-form', '/customer-inquiry', 'inquiry-result');
+        setupForm('followup-form', '/generate-followup', 'followup-result');
+
+        // Load data on page load
+        loadData();
+
+        // Pre-populate demo data
+        setTimeout(() => {
+            // Event form
+            const eventForm = document.getElementById('event-form');
+            eventForm.elements['event_name'].value = 'Holiday Jewelry Pop-Up';
+            eventForm.elements['event_date'].value = '2024-12-15';
+            eventForm.elements['event_location'].value = 'Downtown Artisan Market';
+            eventForm.elements['target_audience'].value = 'Holiday shoppers looking for unique gifts';
+
+            // Inquiry form
+            const inquiryForm = document.getElementById('inquiry-form');
+            inquiryForm.elements['customer_name'].value = 'Sarah Johnson';
+            inquiryForm.elements['inquiry_type'].value = 'permanent_jewelry';
+            inquiryForm.elements['inquiry_text'].value = 'I\'m interested in permanent jewelry for my bridesmaids. What options do you have and how does the process work?';
+
+            // Follow-up form
+            const followupForm = document.getElementById('followup-form');
+            followupForm.elements['customer_name'].value = 'Michelle Chen';
+            followupForm.elements['event_attended'].value = 'Bridal Show';
+            followupForm.elements['interests'].value = 'Custom engagement rings, wedding bands';
+            followupForm.elements['followup_type'].value = 'product_recommendation';
+        }, 500);
+    </script>
+</body>
+</html>
